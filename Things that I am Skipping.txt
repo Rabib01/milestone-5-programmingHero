@@ -1,0 +1,102 @@
+teaHouse Project : 
+	For border : 1px solid red -> In tailwind we give 			border-2 border-red-500 min-h-[200px] // only when they do not have any height propertly inherently set
+		Container Class : eita dile full width na niye ekta normal container er width nibe
+	Margin 0 auto : 								mx-auto
+	need to add tailwind.config.js
+	flex : 										flex
+	font : 80px									text-[80px]
+	width: 200ox 									w-[200px]
+	height: 65px 									h-[64px]	
+											text-[20px]
+											text-white
+	border-radius:									rounded-lg
+	justify content: space between							justify-center
+	align items: center								items`-center
+	position: relative								relative
+	top: 100px									top-[100px]
+	margin-left: 4px								ml-4
+		font awesome er size change korte hoile change its font size or		text-[custompx]
+	gradient background								bg-gradient-to-r from [hexCode] to [hexCode]
+		Diff between absolute and relative. 
+		One affects box model and one does not Positon vs padding and margin
+		Relative: Jei jaiga dhore chilo oi jaiga thakbei, vanish hobe na.
+		Absolute: Oitar jaiga vanish hoye jabe, will treat as if it wasnt there
+		Absolute e parent khuja shuru korbe, if it does not have a parent then it will take the window as the parent
+		Parent relative; child absolute, then child will move relative to parent and not window or body
+	to rotate images								rotate-45
+	-x-
+	
+	Responsiveness
+	display:flex; 									flex
+	flex-direction: column 								flex-col
+	flex-direction:row								md:flex-row for medium size devices
+	
+	min height 									min-h-[200px]
+	max width 									max-w-[1250px]
+	text center									text-center
+	text center									text-center
+		Do not give min width for elements that you have just started to work with
+	center an image in a card 							mx-auto-block		{to change it to a block element from a flex element}
+	to work with cards, use display: grid						grid grod-cols-1 gap-4  [for small devices]
+		Responsiveness								md:grid-cols-5		[for large devices]
+		Section practise korar somoi drawing kore kore korte hobe
+	Parent er onujai height nile							h-full		On Chilren
+	1/2 of parent's width on children						w-1/2
+		Maintain a basic layout through out
+		Give padding to parent 
+		Give gap to children
+		
+                                 Parent                               
+       ┌────────────────────┐    grid grid-col-2 grid-rows-3 gap-4    
+       │ ┌──────┐  ┌──────┐ │                                         
+       │ │1     │  │2     │ │    2                                    
+       │ └──────┘  │      │ │    row-span-2 + flex justify-center items-center to put the image in the middle} + rounded-lg                          
+       │ ┌──────┐  │      │ │                                         
+       │ │3     │  │      │ │    3                                    
+       │ │      │  └──────┘ │    row-span-2 + flex justify-center items-center {to put the image in the middle} + rounded-lg                          
+       │ │      │  ┌──────┐ │                                         
+       │ │      │  │4     │ │                                         
+       │ └──────┘  └──────┘ │                                         
+       └────────────────────┘                                         
+		
+		Always use for positioning children : absolute and parent to be relative or absolute	 
+	to make a div rounded 								border-2 rounded-full p-1	
+        border-radius  [turn to circle]							rounded-full
+        After positioning applied							top-[27%] left-[5%]
+	Work with the z index the one furthest from DOM					z-10        	
+	work with opacity								opacity-20
+	small images inside of divs 							position: absolute {parent : relative/ abosulte} + bottom-4 right-4 to keep lower right corner
+	to make resposive + if parent is flex						flex-col ++ md:flex-row -> To change the flex directions
+	
+	-----------------------------------------------Module 24 Starts Here
+	document.getElementsByTagName(h1)
+	document.getElementsByTagName(li) 
+	sob gular iterable hisheve dei, beshi use korbona but use korar dorkart
+
+	querySelector vs querySelectorAll -> gives the first vs gives an HTML collection
+	HTML collection e forEach use kora jai na but forOf use kora jai
+	
+	To change the style of an element. 
+	document.querySelector('.className').style.color = "red""
+
+	innerHTML is very important 
+
+	NodeList vs HTML collection -> Also important 
+
+	https://web.programming-hero.com/update-1/video/update-1-24-7-nodelist-htmlcollection-parentnode-childnodes-createelement -> important 
+	-> important -> create and insert html 
+
+	connst h1 = document.createElement("h1") -> this is also impoprtant 	
+	
+	
+
+	-----------------------------------------------Module 24 Ends Here
+
+	-----------------------------------------------Module 25 Starts Here
+	Events, EventListeners and EventBubble
+
+
+
+
+
+	-----------------------------------------------Module 25 Ends Here

@@ -1,0 +1,170 @@
+
+The descendant ( ) and child (>) combinators are two of the four main CSS combinators. Here's the complete set:
+
+Combinator	Name	Matches
+(space)	Descendant	Any descendant, no matter how deeply nested
+>	Child	Only direct children
++	Adjacent sibling	The very next sibling
+~	General sibling	All following siblings
+
+Let's go through each one with a simple example.
+
+1. Descendant ( )
+
+Matches any element inside another element, regardless of depth.
+
+<div class="parent">
+  <p>Paragraph 1</p>
+
+  <section>
+    <p>Paragraph 2</p>
+  </section>
+</div>
+.parent p {
+  color: red;
+}
+
+✅ Both paragraphs become red.
+
+2. Child (>)
+
+Matches only direct children.
+
+<div class="parent">
+  <p>Paragraph 1</p>
+
+  <section>
+    <p>Paragraph 2</p>
+  </section>
+</div>
+.parent > p {
+  color: blue;
+}
+
+✅ Only Paragraph 1 becomes blue.
+
+3. Adjacent Sibling (+)
+
+Matches the very next sibling.
+
+<h2>Title</h2>
+<p>First paragraph</p>
+<p>Second paragraph</p>
+h2 + p {
+  color: red;
+}
+
+Result:
+
+Title
+↓
+First paragraph   ← red
+Second paragraph
+
+Only the first <p> immediately after the <h2> is selected.
+
+4. General Sibling (~)
+
+Matches every following sibling.
+
+<h2>Title</h2>
+<p>First paragraph</p>
+<p>Second paragraph</p>
+<div></div>
+<p>Third paragraph</p>
+h2 ~ p {
+  color: green;
+}
+
+Result:
+
+Title
+↓
+First paragraph    ← green
+Second paragraph   ← green
+div
+Third paragraph    ← green
+
+Every <p> that comes after the <h2> is selected.
+
+There are also selector types (not combinators)
+
+These are just as important:
+
+*           Universal selector
+div         Type selector
+.class      Class selector
+#id         ID selector
+[disabled]  Attribute selector
+
+Examples:
+
+input[type="text"]
+img[alt]
+a[href]
+Pseudo-classes
+
+These select elements based on their state or position.
+
+:hover
+:focus
+:active
+:checked
+:first-child
+:last-child
+:nth-child()
+:not()
+:is()
+:has()
+
+Example:
+
+li:nth-child(2) {
+  color: red;
+}
+Pseudo-elements
+
+These target part of an element.
+
+::before
+::after
+::first-letter
+::first-line
+::selection
+::placeholder
+
+Example:
+
+button::before {
+  content: "👉 ";
+}
+Combining selectors
+
+You can mix them together:
+
+.container > ul li.active + li:hover
+
+This means:
+
+Find .container
+Find its direct <ul> child
+Find any descendant <li>
+That has the class active
+Select the next <li>
+Only while it's being hovered
+What you should learn first
+
+For modern CSS, I'd recommend this order:
+
+✅ Descendant ( )
+✅ Child (>)
+✅ Adjacent sibling (+)
+✅ General sibling (~)
+Class (.), ID (#), and element selectors
+Attribute selectors ([type="text"])
+:hover, :focus, :active
+:first-child, :last-child, :nth-child()
+:not()
+:is()
+:has() (very powerful and increasingly well supported)
+::before and ::after

@@ -1,0 +1,37 @@
+The event travels from the top of the DOM down to the target element.
+
+Click button
+
+CAPTURE
+window
+ ↓
+document
+ ↓
+html
+ ↓
+body
+ ↓
+container
+ ↓
+card
+ ↓
+button
+
+TARGET
+button
+
+BUBBLE
+button
+ ↑
+card
+ ↑
+container
+ ↑
+body
+ ↑
+html
+ ↑
+document
+ ↑
+window
+
