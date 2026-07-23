@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=0, initial-scale=1.0" />
+    <title>Something Stupid because I am tired of watching videos</title>
+    <style>
+      body {
+        background-color: darkslategrey;
+        height: 2000px;
+      }
+      .comments p {
+        border: 6px solid blueviolet;
+        border-radius: 12px;
+        padding: 10px;
+        margin: 10px;
+        background-color: aqua;
+      }
+
+      .text-area-and-button {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+      }
+      #text-area {
+        width: 300px;
+        background: transparent;
+        margin-left: 10px;
+        border-radius: 9px;
+        border: none;
+        border-bottom: 4px solid blueviolet;
+      }
+      #text-area:focus {
+        border: none;
+        outline: none;
+        border-bottom: 6px solid blueviolet;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+        font-weight: bolder;
+        height: 145px;
+      }
+      #button {
+        height: 30px;
+        background-color: aqua;
+        border: 6px solid blueviolet;
+        border-radius: 5px;
+      }
+      #button:hover {
+        background-color: rgb(48, 151, 151);
+        cursor: sw-resize;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>These are all of my comments</h1>
+    <h2>Write what is in your minnd</h2>
+    <div class="comments">
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam sunt
+        reiciendis, nisi temporibus eveniet labore quibusdam, dicta tempore
+        aperiam in repudiandae possimus ad nostrum, ipsam est iure dolores ut
+        inventore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugiat
+        voluptatum sequi recusandae repellendus cum totam, minima dolor dolore
+        error earum deserunt mollitia sapiente illo doloremque porro maxime,
+        cumque sed!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
+        deleniti maxime, minus vitae, recusandae natus veniam consequatur
+        excepturi rem ipsam adipisci beatae sapiente harum architecto explicabo,
+        nam illum. Alias, maxime.
+      </p>
+    </div>
+    <div class="text-area-and-button">
+      <textarea name="" id="text-area" cols="30" rows="10"></textarea>
+      <button id="button">Click to add to comments</button>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
