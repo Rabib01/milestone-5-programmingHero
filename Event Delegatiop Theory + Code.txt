@@ -1,0 +1,31 @@
+Event Delegatiop. 
+Understand this only after you have understood Event bubbling and trickling. 
+
+So... What the fuck is event delegation ?? 
+event delegation is the process of handling the event in our webpage in a better way. 
+
+This is only possible because of how the events propagate up the DOM tree. 
+
+Add events to our webpagem like clicks, keydown events, and a lot of events, as teh applcation grows, our webpagebecomes stuffed with all ofthese events 
+
+A lot of event handlers, that is a very critical performance bottleneck. we should avoid doing it, that is why we use the p[rocess of event delegation and so they provide a very good technique to handle these event handl;ers so that we do not have these handlers hanging around and cause bottlenecks in the website 
+
+ecom site. categries, laptops + cameras + shoes + a lot more categoreis. Click on laptop takes me to a new page with a different url
+
+domainName/laptops
+domainName/Cameras 
+
+These are all different HTML elements, one has an ID of a laptop and another has an iD of a camera. 
+they attach eventHandlers to these ids.
+
+generally this is what happens. 
+document.querySelector.className.addEventListener(click).callbackFunction. Then to redirect to these locations. Window.location.href. 
+
+if we attach an eventListener to each of thsee components, that is not a good practise to do. this can grow infinitely. We will eventually load our page, if we had lazy loading or infinite scrolling then we would keep on adding events to child elements and and individual elements to our webpage and keep on attachjing event listenters. Then our page will keep on having event handlersand thos can lead to much performaacne issues, the better way to handle this is to be using event delegation. 
+
+Therefore the practise to delegate is to instead of attaching an html element to the divs themselves, we should attach an html element directly to the parent of these elements 
+
+div id categories we attach the single event listener onto this div instead of placing this on aptop or cameras or shoes. Then the event happening over isdie the child elements will bubble out to their parents and bubble out to parent and then the callback function will be called which is attached to the categories.. 
+	Instead of having so many event handlers, what we have done is that we have created a signle event handler and just because of hte concept of the event bubbling, the events are now being propagated up the hierarchy, and the parent is liwstening to all of the enets happening in the child element. This is the cocnept of EVENT DELEGATION and this is onloy possible beauce3 of event bubbling in JS 
+	
+This is what theory looks like. 

@@ -94,8 +94,10 @@ teaHouse Project :
 
 	-----------------------------------------------Module 25 Starts Here
 	Events, EventListeners and EventBubble
-
-
+	
+	Three types of triggers by mouse : mouseenter, mousemove, mouse out, focus on text input fields
+	
+		
 
 
 

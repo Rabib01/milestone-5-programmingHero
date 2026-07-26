@@ -35,3 +35,339 @@ document
  ↑
 window
 
+
+	Event bubbling, capturing, tricking and delegation. 
+	2 ways of event propagation in the dom tree. 
+
+                                                                                                                                      
+   ┌────────────────────────────────┐                                                                                                 
+   │ ┌────────────────────────────┐ │  any event occurs on a child will propagate to parents                                          
+   │ │ parent div                 │ │  as well                                                                                        
+   │ │   ┌────────────────────┐   │ │                                                                                                 
+   │ │   │ child div          │   │ │  child has a method of onClick                                                                  
+   │ │   │                    │   │ │                                                                                                 
+   │ │   │                    │   │ │  onClick on parent -> parent's onClick is called                                                
+   │ │   │                    │   │ │  if we are clicking the onclick on these children                                               
+   │ │   │                    │   │ │   which order will the onclicks be called overall                                               
+   │ │   │                    │   │ │                                                                                                 
+   │ │   │                    │   │ │  EventBubbling. click the child -> child's onclick called first                                 
+   │ │   └────────────────────┘   │ │  Moves up to the hierarchy till reaches the end of hierarchy bubbling out of the dom tree       
+   │ │                            │ │                                                                                                 
+   │ └────────────────────────────┘ │  event capturing : Different order to event bubbling. when the child is clicked, parent's       
+   └────────────────────────────────┘  onClick called first and then the child.                                                       
+                                       in case there is a grandparent then clicking on the parent will start to bubble up and vice ver
+                                       event trickling is the same as event capturing  g. it is just another name for capturing       
+                                                                                                                                      
+                                       we can use event capturing and bubbling in whatever way we want to                             
+                                       both happens when you click on onClick.                                                        
+   
+                                                                                                                                       
+        grand-parent div                                                                                                               
+     ┌────────────────────────────────┐                                                                                                
+     │ ┌────────────────────────────┐ │   attacheing an eventListener to the grant parent clicking./                                   
+     │ │ parent div                 │ │     const grandParent = document.querySelector(".grandParent");                                
+     │ │   ┌────────────────────┐   │ │                                                                                                
+     │ │   │ child div          │   │ │     grandParent.addEventListener("click", function () {                                        
+     │ │   │                    │   │ │       console.log("grand parent clickedd!");                                                   
+     │ │   │                    │   │ │     });                                                                                        
+     │ │   │                    │   │ │                                                                                                
+     │ │   │                    │   │ │   Clicking all divs is firing this event                                                       
+     │ │   │                    │   │ │   However,                                                       clicking on child             
+     │ │   │                    │   │ │     const grandParent = document.querySelector(".grandParent");   all 3 are clicked            
+     │ │   └────────────────────┘   │ │     const parent = document.querySelector(".parent");            clicking on parent            
+     │ │                            │ │     const child = document.querySelector(".child");               parent & grandparent clicked 
+     │ └────────────────────────────┘ │                                                                  clicking on grand-parent      
+     └────────────────────────────────┘     grandParent.addEventListener("click", function () {           only grand parent is clicked 
+                                              console.log("grand parent clickedd!");                                                   
+                                              console.log("");                                            order of execution           
+                                            });                                                           C -> P -> GP                 
+                                                                                                          events are bubbling out      
+                                            parent.addEventListener("click", function () {                                              
+                                              console.log("Parent is clicked");                                                         
+                                              console.log("");                                                                         
+                                            });                                                                                        
+                                                                                                                                       
+                                            child.addEventListener("click", function () {                                              
+                                              console.log("Child is clicked");                                                         
+                                              console.log("");                                                                            
+   
+   
+Event bubbling is used by default if you do not pass in the third argument is the addEventListener. Third argument is considered as falase by default. 
+
+
+                                                                                                                                      
+                                      const grandParent = document.querySelector(".grandParent");                                     
+     grand-parent div                 const parent = document.querySelector(".parent");                                               
+  ┌────────────────────────────────┐  const child = document.querySelector(".child");                                                 
+  │ ┌────────────────────────────┐ │                                                                                                  
+  │ │ parent div                 │ │  grandParent.addEventListener(                                                                   
+  │ │   ┌────────────────────┐   │ │    "click",                                                                                      
+  │ │   │ child div          │   │ │    function () {                                                                                 
+  │ │   │                    │   │ │      console.log("grand parent clickedd!");                                                      
+  │ │   │                    │   │ │      console.log("");                             --> Now the order of execution                 
+  │ │   │                    │   │ │    },                                                  clicking the grandparent                  
+  │ │   │                    │   │ │    true,                                                only the gradparent is cliked in console 
+  │ │   │                    │   │ │  );                                                   clicking the child                         
+  │ │   │                    │   │ │                                                                                                  
+  │ │   └────────────────────┘   │ │  parent.addEventListener(                              GP -> P -> C  --> Reversed order          
+  │ │                            │ │    "click",                                                                                      
+  │ └────────────────────────────┘ │    function () {                                                                                 
+  └────────────────────────────────┘      console.log("Parent is clicked");                                                           
+                                          console.log("");                                                                           s
+                                        },                                                                                            
+                                        true,                                                                                         
+                                      );                                                                                              
+                                                                                                                                      
+                                      child.addEventListener(                                                                         
+                                        "click",                                                                                      
+                                        function () {                                                                                 
+                                          console.log("Child is clicked");                                                            
+                                          console.log("");                                                                            
+                                        },                                                                                            
+                                        true,                                                                                         
+                                      );
+
+ Events are porpagated in a different manner now 
+ Trickling down, going down the hierarchy, event capturing
+ This has a performace issue, as when we click the child, three events are fired at once. Whether in case of bubbling or in case of trickling. We need to stop this to 
+ save compute. 
+ There according to the w3c model the whole chain happens anyways
+
+This is the w3c model 
+If you mean the W3C Event Model, here's the short version:
+The W3C Event Model says that when you click an element, the event travels in 3 phases:
+Capturing phase 📥
+The event goes from the document down to the target element.
+Order: document → html → body → ... → button
+Target phase 🎯
+The event reaches the element that was actually clicked.
+Bubbling phase 📤
+The event travels back up from the target to the document.
+Order: button → ... → body → html → document
+Example:
+<div>
+  <button>Click me</button>
+</div>
+If you click the button:
+Capturing: document → html → body → div → button
+Target:    button
+Bubbling:  button → div → body → html → document
+By default, addEventListener() listens during the bubbling phase. If you pass { capture: true }, it listens during the capturing phase instead.
+  
+                                                                                                      
+                                                                                                    
+                                                                                                    
+                                                                                                    
+       grand-parent div                 const grandParent = document.querySelector(".grandParent"); 
+    ┌────────────────────────────────┐  const parent = document.querySelector(".parent");           
+    │ ┌────────────────────────────┐ │  const child = document.querySelector(".child");             
+    │ │ parent div                 │ │                                                              
+    │ │   ┌────────────────────┐   │ │  grandParent.addEventListener(                               
+    │ │   │ child div          │   │ │    "click",                                                  
+    │ │   │                    │   │ │    function () {                                             
+    │ │   │                    │   │ │      console.log("grand parent clickedd!");                  
+    │ │   │                    │   │ │      console.log("");                                        
+    │ │   │                    │   │ │    },                                                        
+    │ │   │                    │   │ │    true,                        			Order : G -> C -> P                              
+    │ │   │                    │   │ │  );                                                          
+    │ │   └────────────────────┘   │ │                                                              
+    │ │                            │ │  parent.addEventListener(                                    
+    │ └────────────────────────────┘ │    "click",                                                  
+    └────────────────────────────────┘    function () {                                             
+                                            console.log("Parent is clicked");                       
+                                            console.log("");                                        
+                                          },                                                        
+                                          false,                                                    
+                                        );                                                          
+                                                                                                    
+                                        child.addEventListener(                                     
+                                          "click",                                                  
+                                          function () {                                             
+                                            console.log("Child is clicked");                        
+                                            console.log("");                                        
+                                          },                                                        
+                                          
+                                          
+                          Third parameter is called the useCapture flag
+                          
+with this, if the child is clicked, first grandparent then child then parent. 1st event propagation and capturing happens and then the bubbling out hapens. grandparnet's useCapture flag was true, so event captured then bubbled then captured. 
+1st layer, true, 2nd layer, capture will not happen, callback not called, it will be called later in the bubbling stage, then it moved to child and the captureing happened. 
+after capturing cycle was completed we moved on to the bubbling cycle. 
+This is how we can use the capturing or the bubbling cycle. 
+
+true, false, false 
+Parent clicked first, capturing cycle completed, 
+then child will be clicked first, as it has reached started the bubbling cycle and then it will click the parent 
+
+This is how we handle our event propagation of different handlers
+
+Also in the same true, false and false phase. If I clicked on the parent, first grandParent is clicked and then parent is clicked. 
+
+How to stop these Propagation up or down the hiearchy and how it is useful ?? ?
+These bubbling and capturing is very expensive. 
+
+HOW TO DO THIS ?? STOP PROPAGATION ?? 
+When we are calling the callback from the eventListener, we have access to the event object "e"
+parent.addEventListener(
+  "click",
+  function (e) {
+    console.log("Parent is clicked");
+    console.log("");
+  },
+  false,
+);
+
+if i do e.stopPropagation() -> will help us stop the propagation of the event. Propagation will stop at this point
+false, false, false, e.stopPropagation() in parent. 
+Does not click the grandParent is clicked 
+
+false, false, false, e.stopPropagatio() on the child and then click the child 
+Only the childCliked is called 
+If we only want the child to be clicked and does not trigger the cliks on the parent and child as well. 
+If we want to stop the propagation cycle, then we should have e.stopPropagation on the child
+
+it wont bubble out and all of the callback functions will not be called 
+
+true, true, true, e.stopPropagation() on the child, child is clicked 
+What will be the output?
+grandParent is clicked, parent is clicked, child is clicked. 
+This is the output, but why ??? 
+In the capturing phase it starts at the top
+
+true, true, true, e.stopPropagation() on the grandParent, child is clicked, what happens ?? 
+only grandparent is clicked will be outputted. 
+
+
+
+
+
+
+Best practise for event delegation according to GeePsT 
+
+The best practice for event delegation is to attach one event listener to a common parent and let events bubble up from its children.
+
+1. Attach the listener as low as possible
+
+Don't attach it to document unless you need to.
+
+❌ Avoid:
+
+document.addEventListener("click", handleClick);
+
+✅ Better:
+
+const list = document.querySelector(".list");
+list.addEventListener("click", handleClick);
+
+This reduces unnecessary event handling.
+
+2. Use event.target to find what was clicked
+list.addEventListener("click", function (e) {
+  console.log(e.target);
+});
+3. Use .closest() instead of checking event.target directly
+
+If your button contains icons or spans, event.target might be one of those elements.
+
+❌
+
+if (e.target.classList.contains("delete-btn")) {
+
+✅
+
+const button = e.target.closest(".delete-btn");
+
+if (!button) return;
+
+console.log("Delete clicked");
+
+closest() walks up the DOM until it finds the matching ancestor.
+
+4. Return early
+
+Avoid deeply nested if statements.
+
+list.addEventListener("click", function (e) {
+  const button = e.target.closest(".delete-btn");
+
+  if (!button) return;
+
+  // Handle deletion
+});
+5. Use data-* attributes for actions
+
+Instead of many class checks:
+
+<button data-action="edit">Edit</button>
+<button data-action="delete">Delete</button>
+list.addEventListener("click", function (e) {
+  const button = e.target.closest("[data-action]");
+  if (!button) return;
+
+  switch (button.dataset.action) {
+    case "edit":
+      console.log("Edit");
+      break;
+    case "delete":
+      console.log("Delete");
+      break;
+  }
+});
+
+This scales much better.
+
+6. Only use delegation for bubbling events
+
+It works well for events like:
+
+✅ click
+✅ input
+✅ change
+✅ keydown
+
+It doesn't work directly for events that don't bubble, such as:
+
+❌ focus
+❌ blur
+
+(You can use focusin and focusout instead.)
+
+Example
+<ul id="todos">
+  <li>
+    Buy milk
+    <button class="delete-btn">Delete</button>
+  </li>
+</ul>
+const todos = document.getElementById("todos");
+
+todos.addEventListener("click", function (e) {
+  const button = e.target.closest(".delete-btn");
+  if (!button) return;
+
+  button.closest("li").remove();
+});
+Only one event listener handles every current and future delete button.
+Rule of thumb
+Use one listener on the nearest common parent.
+Use event.target.closest() to identify the intended element.
+Use data-* attributes when handling multiple actions.
+Return early if the click isn't relevant.
+Delegate events only when the event bubbles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
