@@ -17,6 +17,22 @@
       hr {
         margin: 50px 0px;
       }
+      .box-container {
+        box-sizing: border-box;
+      }
+      .grid {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, 100px);
+        margin: 0.5rem;
+      }
+      .box {
+        aspect-ratio: 1/1;
+        border: 2px solid red;
+      }
+      .box.clicked {
+        background-color: salmon;
+      }
     </style>
   </head>
   <body>
@@ -50,6 +66,15 @@
       <input type="text" placeholder="write text here" />
     </div>
 
+    <hr />
+    <div class="box-container">
+      <button data-add-box>CreateBox</button>
+      <div class="grid">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>

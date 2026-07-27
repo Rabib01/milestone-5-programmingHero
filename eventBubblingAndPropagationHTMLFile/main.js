@@ -6,6 +6,10 @@ const child = document.querySelector(".child");
 const category = document.querySelector("#categories");
 const inputs = document.querySelector(".input-container");
 
+const addBoxButtoon = document.querySelector("[data-add-box]");
+const grid = document.querySelector(".grid");
+const boxes = document.querySelectorAll(".box");
+
 grandParent.addEventListener(
   "click",
   function () {
@@ -35,15 +39,10 @@ child.addEventListener(
 );
 
 // Code for event delegation
-
 category.addEventListener("click", function (e) {
-  // ---------------->
   if (e.target.id === "Laptops") {
     window.location.assign("laptop.html");
   }
-
-  //------------------> The issue with this is that
-  // if we had few more tags and nested elements, if we clicked those elemetns then due to bubbling the user will be directerd to the laptop as well
 });
 
 inputs.addEventListener("keyup", function (e) {
@@ -59,11 +58,82 @@ const upperCasingFirstLetter = function (string) {
     .join(" ");
 };
 
+// // bad practise starts here, adding event listeners everytime oe blox is clicked
+
+// addBoxButtoon.addEventListener("click", function (e) {
+//   const box = document.createElement("div");
+//   box.classList.add("box");
+//   box.addEventListener("click", function (e) {
+//     box.classList.toggle("clicked");
+//   });
+
+//   grid.append(box);
+// });
+
+// boxes.forEach((box) => {
+//   box.addEventListener("click", function (e) {
+//     box.classList.toggle("clicked");
+//   });
+// });
+// // bad practise
+
+// good starts here, the only problem is that for demo reasons
+// i am attaching an evenmtlistener to the documentr itself
+// addBoxButtoon.addEventListener("click", function (e) {
+//   const box = document.createElement("div");
+//   box.classList.add("box");
+//   grid.append(box);
+// });
+
+// // doucment s the parent element
+// document.addEventListener("click", function (e) {
+//   if (e.target.matches(".box")) {
+//     console.log("bOx diV waS ClicKEd");
+//     e.target.classList.toggle("clicked");
+//   }
+// });
+// good practise ends here
+
+// even betterPractise - Doing the same wthing with a global helper function
+addBoxButtoon.addEventListener("click", function (e) {
+  const box = document.createElement("div");
+  box.classList.add("box");
+  grid.append(box);
+});
+
+function addGlobalListenerHelperFunction(type, selector, callBack) {
+  document.addEventListener(type, function (e) {
+    if (e.target.matches(selector)) {
+      callBack(e);
+    }
+  });
+}
+
+addGlobalListenerHelperFunction("click", ".box", (e) => {
+  e.target.classList.toggle("clicked");
+});
+
+// evven better practise enbds here
+
+/**
+ * Notes :
+ * matches(".class-name") selects ansy css selectors in the dom
+ * matches by css selectors
+ */
+
+// event delegation
+// taking an event listener to our parent and delegating it to our children
+
+/** notes
+------Advantages
 // pros and limitations of event Delegations
 // saves a lot of memory
 // less code
 // dom manipulation and infinite scrolling
-
+-----Limitations
 // lot of evetns do not bubble up, for example blur and focus
-
 // limitation -> we need to let the events bubble and and not use e.stopProppagation() in the code
+*/
+
+//------------------> The issue with this is that
+// if we had few more tags and nested elements, if we clicked those elemetns then due to bubbling the user will be directerd to the laptop as well
