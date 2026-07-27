@@ -10,6 +10,9 @@ const addBoxButtoon = document.querySelector("[data-add-box]");
 const grid = document.querySelector(".grid");
 const boxes = document.querySelectorAll(".box");
 
+const strongMango = document.querySelector("#strong-mango");
+const buttonsList = document.querySelectorAll(".btn-add");
+
 grandParent.addEventListener(
   "click",
   function () {
@@ -112,8 +115,32 @@ function addGlobalListenerHelperFunction(type, selector, callBack) {
 addGlobalListenerHelperFunction("click", ".box", (e) => {
   e.target.classList.toggle("clicked");
 });
-
 // evven better practise enbds here
+
+// CLOSEST METHOD :: ************************
+// Allows to start at the child element and then using a selector
+// go up the dom tree untily ou find an element mathcing hte selector
+// in other words the closest parent element to whatever your target is
+
+// badPractise - Thiis is a [bad practise] because what if this werre nested byh a lot of timkjesw
+// const list = strongMango.parentElement.parentElement;
+// console.log(list);
+
+//good practise - this is where the closest method isw going tho be a lot more nifty
+const list = strongMango.closest("ul");
+console.log(list);
+// now we have a reference to that unordered list from that strong mango tag
+
+// using the closest Method on a button node-list
+buttonsList.forEach((listItem) => {
+  listItem.addEventListener("click", function (e) {
+    console.log("I was clicked");
+    console.log(listItem.closest("li"));
+  });
+});
+// We need to know which list item this button is for
+
+//-----------------------------------//
 
 /**
  * Notes :
