@@ -2,11 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=
-    , initial-scale=1.0"
-    />
     <title>Random PRactise</title>
   </head>
   <body>
@@ -43,7 +38,7 @@
       });
     </script> -->
 
-    <!-- event delegation applied -->
+    <!-- event delegation applied
     <script>
       const items = document.querySelectorAll(".item");
       const butt = document.querySelector(".btn");
@@ -56,6 +51,50 @@
 
       butt.addEventListener("click", (e) => {
         count++;
+        const markup = `<li class="item">My awesome item - ${count}</li>`;
+        ol.insertAdjacentHTML("beforeend", markup);
+      });
+    </script> -->
+
+    <!-- using only one eventListener, even removing the one one the ordered list -->
+    <!-- cannpot nbe done as the dom has no way of knowing which element was clicked to be removed -->
+    <!-- <script>
+      const items = document.querySelectorAll(".item");
+      const butt = document.querySelector(".btn");
+      const ol = document.querySelector("#item-list");
+      let count = 6;
+
+      ol.addEventListener("click", (e) => {
+        //   e.target.parentNode.removeChild(e.target);
+        console.log(e.target.parentNode);
+      });
+
+      butt.addEventListener("click", (e) => {
+        count++;
+        const markup = `<li class="item">My awesome item - ${count}</li>`;
+        ol.insertAdjacentHTML("beforeend", markup);
+        console.dir(e.target.parentNode.childNodes[3]);
+      });
+
+      console.dir(document.childNodes[1].childNodes[2].childNodes[3]);
+    </script> -->
+
+    <!-- same shit witt matches -->
+    <script>
+      const ol = document.querySelector("#item-list");
+      const butt = document.querySelector(".btn");
+
+      let count = 6;
+
+      ol.addEventListener("click", (e) => {
+        if (e.target.matches(".item")) {
+          e.target.remove();
+        }
+      });
+
+      butt.addEventListener("click", () => {
+        count++;
+
         const markup = `<li class="item">My awesome item - ${count}</li>`;
         ol.insertAdjacentHTML("beforeend", markup);
       });
