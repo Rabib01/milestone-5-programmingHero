@@ -1,0 +1,3 @@
+element.matches(CSS) = Returns true if element matches the given CSS selector, otherwise returns fasle
+element.closest(CSS) = To look for the nearest ancestor that matches the given CSS-selector. The element itself is also checked
+elemA.contains(elemB) = returns true if elemB is inside elemA (a descendent of elemA) or when elemA == elemB 
