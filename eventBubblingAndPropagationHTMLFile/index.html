@@ -5,20 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      div {
+      #eventBubbling div {
         min-width: 100px;
         min-height: 100px;
         padding: 30px;
         border: 1px solid red;
       }
+      #categories {
+        border: 1px solid red;
+      }
+      hr {
+        margin: 50px 0px;
+      }
     </style>
   </head>
   <body>
-    <div class="grandParent">
-      <div class="parent">
-        <div class="child"></div>
+    <!-- Code for event propagation -->
+    <div id="eventBubbling">
+      <div class="grandParent">
+        <div class="parent">
+          <div class="child"></div>
+        </div>
       </div>
     </div>
+    <hr />
+
+    <!-- Code for event delegation -->
+    <!-- Normally we would have attached each lik item with an event handler which will click onto click events -->
+    <!-- Then navigate users.  -->
+    <!-- 3 separate eventHandlers. What if we had 1000s of eventHandlers -->
+    <!-- We will use event bubbling and propagation, use eventListener to the category only -->
+
+    <div class="">
+      <ul id="categories">
+        <li id="Laptops">Laptops</li>
+        <li id="Cameras">Cameras</li>
+        <li id="Phones">Phones</li>
+      </ul>
+    </div>
+
+    <hr />
+    <div class="input-container">
+      <input type="text" placeholder="write text here" data-uppercase />
+      <input type="text" placeholder="write text here" />
+    </div>
+
     <script src="./main.js"></script>
   </body>
 </html>
