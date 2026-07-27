@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Random PRactise</title>
+  </head>
+  <body>
+    <h1>Somple ordered list</h1>
+    <ol id="item-list">
+      <li class="item">My awesome item - 1</li>
+      <li class="item">My awesome item - 2</li>
+      <li class="item">My awesome item - 3</li>
+      <li class="item">My awesome item - 4</li>
+      <li class="item">My awesome item - 5</li>
+      <li class="item">My awesome item - 6</li>
+    </ol>
+
+    <button class="btn">Click me</button>
+
+    <!-- without event delegation -->
+
+    <!-- <script>
+      const items = document.querySelectorAll(".item");
+      const butt = document.querySelector(".btn");
+      let count = 6;
+
+      items.forEach((item) =>
+        item.addEventListener("click", (e) => {
+          e.target.parentNode.removeChild(e.target);
+        }),
+      );
+
+      butt.addEventListener("click", (e) => {
+        count++;
+        const markup = `<li class="item">My awesome item - ${count}</li>`;
+        const ol = document.querySelector("#item-list");
+        ol.insertAdjacentHTML("beforeend", markup);
+      });
+    </script> -->
+
+    <!-- event delegation applied -->
+    <script>
+      const items = document.querySelectorAll(".item");
+      const butt = document.querySelector(".btn");
+      const ol = document.querySelector("#item-list");
+      let count = 6;
+
+      ol.addEventListener("click", (e) => {
+        e.target.parentNode.removeChild(e.target);
+      });
+
+      butt.addEventListener("click", (e) => {
+        count++;
+        const markup = `<li class="item">My awesome item - ${count}</li>`;
+        ol.insertAdjacentHTML("beforeend", markup);
+      });
+    </script>
+  </body>
+</html>
